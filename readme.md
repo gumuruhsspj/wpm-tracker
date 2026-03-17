@@ -17,7 +17,7 @@ The widget automatically appears on top of the Word window and displays your **c
 
 ## ⬇️ Download
 
-If you want to download the ready-to-use version:
+Download the ready-to-use version:
 
 🔗 [https://fgroupindonesia.com/download/wpm-tracker-tool/](https://fgroupindonesia.com/download/wpm-tracker-tool/)
 
@@ -29,12 +29,12 @@ If you want to download the ready-to-use version:
 * 🪟 **Floating overlay widget** that follows the Word window
 * 🎞 **Animated GIF indicator**
 
-  * `typing.gif` → shown when you are actively typing
+  * `typing.gif` → shown when actively typing
   * `wait.gif` → shown when idle
 * 🖱 **Smart click-through system**
 
   * Transparent when not hovered
-  * Interactive when mouse is over the widget
+  * Interactive when hovered
 * 🔄 **Reset button** to restart WPM calculation
 * ❌ **Close button** to exit the overlay
 * 🧠 Automatically hides when Word is not the active window
@@ -42,8 +42,6 @@ If you want to download the ready-to-use version:
 ---
 
 ## 📸 Preview
-
-Example overlay widget:
 
 ```
 +--------------------------+
@@ -59,31 +57,29 @@ The widget appears in the **bottom-right corner of the Microsoft Word window**.
 
 ## ⚙️ How It Works
 
-The program:
-
 1. Detects the **active window**
 2. If the active window contains **"Word"**, the widget appears
-3. A **keyboard listener** tracks your typing
-4. Characters are counted and converted to **Words Per Minute (WPM)**
+3. A **global keyboard listener** tracks your typing
+4. Characters are counted and converted into **Words Per Minute (WPM)**
 
-WPM formula used:
+**Formula:**
 
 ```
 WPM = (characters / 5) / time_in_minutes
 ```
 
-(1 word = 5 characters standard typing metric)
+> Standard assumption: **1 word = 5 characters**
 
 ---
 
 ## 📦 Requirements
 
-Python **3.8+**
+* Python **3.8+**
 
 Install dependencies:
 
 ```bash
-pip install pillow pygetwindow pynput pywin32
+pip install pillow pygetwindow pynput pywin32 winotify
 ```
 
 ---
@@ -103,8 +99,6 @@ word-wpm-overlay/
 
 ## ▶️ Running the Project
 
-Run the script:
-
 ```bash
 python tracker.py
 ```
@@ -113,53 +107,59 @@ Then:
 
 1. Open **Microsoft Word**
 2. Start typing
-3. The overlay widget will appear and show your **live WPM**
+3. The overlay widget will appear and display your **live WPM**
 
 ---
 
 ## 🖥 Platform
 
-Currently tested on:
+Tested on:
 
 * Windows 10 / 11
 * Microsoft Word
 
-The project relies on **Windows APIs**, so it will not work on macOS or Linux.
+⚠️ This project relies on **Windows APIs**, so it is **not compatible with macOS or Linux**.
 
 ---
 
-🛠 Technologies Used
-🧩 Core Language
-Python
+## 🛠 Technologies Used
 
-🎨 Frontend (UI)
-tkinter — GUI framework for making overlay window
+### 🧩 Core
 
-🖥️ System Integration (Windows API)
-pygetwindow — Windows active detection (Microsoft Word)
-pywin32 (win32api, win32event, winerror) — Windows API Interaction (mutex, cursor, dll)
-ctypes — Accessing low-level Windows API (click-through & transparency)
+* **Python**
 
-⌨️ Input Handling
-pynput — Global keyboard listener for input tracking
+### 🎨 UI
 
-🖼️ Media Processing
-Pillow (PIL) — Load & GIF animated (typing / idle state)
+* `tkinter` — GUI framework for creating the overlay window
 
-🔔 Notification
-winotify — Windows toast notification
+### 🖥️ System Integration (Windows API)
 
-📦 Packaging
-PyInstaller — Convert script becomes .exe (Windows executable)
+* `pygetwindow` — Detect active window (Microsoft Word)
+* `pywin32` (`win32api`, `win32event`, `winerror`) — Windows API interaction (mutex, cursor, etc.)
+* `ctypes` — Low-level Windows API access (click-through & transparency)
+
+### ⌨️ Input Handling
+
+* `pynput` — Global keyboard listener for tracking typing input
+
+### 🖼️ Media
+
+* `Pillow (PIL)` — GIF loading and animation (typing / idle states)
+
+### 🔔 Notifications
+
+* `winotify` — Windows toast notifications
+
+### 📦 Packaging
+
+* `PyInstaller` — Convert Python script into a Windows executable (`.exe`)
 
 ---
 
 ## 🙏 Credits
 
-This project is supported by **FGroupIndonesia**.
-
-GitHub organization:
-[https://github.com/fgroupindonesia](https://github.com/fgroupindonesia)
+Supported by **FGroupIndonesia**
+GitHub: [https://github.com/fgroupindonesia](https://github.com/fgroupindonesia)
 
 ---
 
@@ -173,7 +173,6 @@ MIT License
 
 Created by **Gumuruh S**
 
-A small utility built for improving typing speed while writing in Word.
+A simple utility built to help improve typing speed while writing in Microsoft Word.
 
 ---
-
