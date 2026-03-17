@@ -1,0 +1,12 @@
+
+Python build CLI :
+
+
+Tanpa Icon:
+pyinstaller --onefile --noconsole --add-data "typing.gif;." --add-data "wait.gif;." tracker.py
+
+Dengan icon:
+pyinstaller --onefile --noconsole --icon=app.ico --add-data "typing.gif;." --add-data "wait.gif;." tracker.py
+
+Dengan text description:
+pyinstaller --onefile --clean --noconsole --icon=app.ico --version-file=version.txt --add-data "typing.gif;." --add-data "wait.gif;." tracker.py
