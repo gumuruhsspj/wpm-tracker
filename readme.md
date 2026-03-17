@@ -147,8 +147,3 @@ Created by **Gumuruh S**
 
 A small utility built for improving typing speed while writing in Word.
 
-Kalau kamu mau, aku juga bisa bantu bikin:
-
-* **README yang lebih “GitHub viral style”** (pakai badges, screenshot section, dll)
-* **nama repo yang lebih catchy**
-* **GIF demo untuk README** biar project kamu kelihatan jauh lebih keren di portfolio. 🚀
