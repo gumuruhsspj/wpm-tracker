@@ -10,6 +10,7 @@ import winerror
 import os
 import sys 
 from winotify import Notification
+from collections import deque
 
 def resource_path (relative_path):
     try :
@@ -31,6 +32,7 @@ class WordFinalOverlay:
         self.show_startup_notification()
 
         self.char_count = 0
+        self.keypress_times = deque()
         self.start_time = None
         self.last_type_time = 0
         self.wpm = 0
@@ -168,14 +170,19 @@ class WordFinalOverlay:
     def on_press(self, key):
         active_win = gw.getActiveWindow()
         if active_win and "Word" in active_win.title:
-            self.last_type_time = time.time()
-            if self.start_time is None: self.start_time = time.time()
+            now = time.time()
+            self.last_type_time = now
+
             if hasattr(key, 'char') or key == keyboard.Key.space:
-                self.char_count += 1
-                elapsed = (time.time() - self.start_time) / 60
-                if elapsed > 0.21:
-                    wpm = (self.char_count / 5) / elapsed
-                    self.wpm_label.config(text=f"WPM : {int(wpm):02}")
+                self.keypress_times.append(now)
+
+                while self.keypress_times and now - self.keypress_times[0] > 60:
+                    self.keypress_times.popleft()
+
+                current_wpm = len(self.keypress_times)/5
+            
+                self.wpm_label.config(text=f"WPM : {int(current_wpm):02}")
+
 
 if __name__ == "__main__":
     check_singleton()
