@@ -173,7 +173,7 @@ class WordFinalOverlay:
             if hasattr(key, 'char') or key == keyboard.Key.space:
                 self.char_count += 1
                 elapsed = (time.time() - self.start_time) / 60
-                if elapsed > 0:
+                if elapsed > 0.21:
                     wpm = (self.char_count / 5) / elapsed
                     self.wpm_label.config(text=f"WPM : {int(wpm):02}")
 

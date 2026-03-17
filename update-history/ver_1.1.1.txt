@@ -1,0 +1,4 @@
+
+version : 1.1.1
+updates : 
+- improving WPM counter fixes by 0.2 sec
