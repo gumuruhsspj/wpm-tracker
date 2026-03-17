@@ -1,4 +1,3 @@
-Berikut contoh **README.md** yang cocok untuk project GitHub kamu. Sudah dibuat seperti repo open-source kecil supaya kelihatan profesional. Kamu bisa langsung copy.
 
 # 📝 Word WPM Overlay Tracker
 
