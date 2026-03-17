@@ -128,14 +128,29 @@ The project relies on **Windows APIs**, so it will not work on macOS or Linux.
 
 ---
 
-## 🛠 Technologies Used
+🛠 Technologies Used
+🧩 Core Language
+Python
 
-* **Python**
-* Tkinter (GUI overlay)
-* Pillow (GIF animation)
-* pynput (keyboard listener)
-* pygetwindow (active window detection)
-* win32api / ctypes (Windows interaction)
+🎨 Frontend (UI)
+tkinter — GUI framework for making overlay window
+
+🖥️ System Integration (Windows API)
+pygetwindow — Windows active detection (Microsoft Word)
+pywin32 (win32api, win32event, winerror) — Windows API Interaction (mutex, cursor, dll)
+ctypes — Accessing low-level Windows API (click-through & transparency)
+
+⌨️ Input Handling
+pynput — Global keyboard listener for input tracking
+
+🖼️ Media Processing
+Pillow (PIL) — Load & GIF animated (typing / idle state)
+
+🔔 Notification
+winotify — Windows toast notification
+
+📦 Packaging
+PyInstaller — Convert script becomes .exe (Windows executable)
 
 ---
 
