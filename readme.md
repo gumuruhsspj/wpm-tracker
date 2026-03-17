@@ -162,12 +162,3 @@ A small utility built for improving typing speed while writing in Word.
 
 ---
 
-✅ **Kesimpulan:**
-README kamu **sudah benar**, cuma aku tambahkan:
-
-* section **Download**
-* section **Credits**
-* formatting lebih GitHub-friendly
-* link FGroupIndonesia lebih jelas
-
----
