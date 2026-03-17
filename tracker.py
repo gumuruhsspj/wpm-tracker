@@ -5,10 +5,31 @@ import time
 import ctypes
 from pynput import keyboard
 import win32api
+import win32event
+import winerror
 import os
+import sys 
+from winotify import Notification
+
+def resource_path (relative_path):
+    try :
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(".")
+    return os.path.join(base_path, relative_path)
+
+mutex = win32event.CreateMutex(None, False, "WPM_Tracker_Unique_Mutex_Name")
+
+def check_singleton():
+    if win32api.GetLastError() == winerror.ERROR_ALREADY_EXISTS:
+        sys.exit(0)
+
 
 class WordFinalOverlay:
+
     def __init__(self):
+        self.show_startup_notification()
+
         self.char_count = 0
         self.start_time = None
         self.last_type_time = 0
@@ -25,7 +46,9 @@ class WordFinalOverlay:
         self.root.configure(bg='white', highlightbackground="black", highlightthickness=2)
 
         # Load GIF
-        self.gif_data = {'typing': self.load_gif("typing.gif"), 'wait': self.load_gif("wait.gif")}
+        self.gif_data = {
+            'typing': self.load_gif("typing.gif"), 
+            'wait': self.load_gif("wait.gif")}
         self.current_gif = 'wait'
         self.frame_idx = 0
 
@@ -59,11 +82,26 @@ class WordFinalOverlay:
         self.sync_loop()   
         self.root.mainloop()
 
+    def show_startup_notification(self):
+        try:
+            toast = Notification(
+                app_id="WPM Tracker",
+                title="WPM Tracker",
+                msg="WPM Started..."
+            )
+
+            toast.show()
+
+        except Exception as e: 
+            print("Notification error", e)
+
     def load_gif(self, filename):
         frames = []
-        if not os.path.exists(filename): return []
+        path = resource_path(filename)
+
+        if not os.path.exists(path): return []
         try:
-            img = Image.open(filename)
+            img = Image.open(path)
             for frame in ImageSequence.Iterator(img):
                 frame = frame.resize((45, 45), Image.Resampling.LANCZOS)
                 frames.append(ImageTk.PhotoImage(frame))
@@ -140,4 +178,6 @@ class WordFinalOverlay:
                     self.wpm_label.config(text=f"WPM : {int(wpm):02}")
 
 if __name__ == "__main__":
+    check_singleton()
+
     WordFinalOverlay()

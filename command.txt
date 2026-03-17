@@ -10,3 +10,6 @@ pyinstaller --onefile --noconsole --icon=app.ico --add-data "typing.gif;." --add
 
 Dengan text description:
 pyinstaller --onefile --clean --noconsole --icon=app.ico --version-file=version.txt --add-data "typing.gif;." --add-data "wait.gif;." tracker.py
+
+Agar final name berubah:
+pyinstaller --onefile --clean --noconsole --name "WPM Tracker" --icon=app.ico --version-file=version.txt --add-data "typing.gif;." --add-data "wait.gif;." tracker.py

@@ -1,0 +1,6 @@
+
+version : 1.1.0
+updates : 
+- adding notification tray
+- using singleton (no more double running apps)
+- fix bugs animation (gif)
