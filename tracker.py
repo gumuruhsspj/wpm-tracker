@@ -9,8 +9,31 @@ import win32event
 import winerror
 import os
 import sys 
+import subprocess
 from winotify import Notification
 from collections import deque
+
+def ensure_word_running():
+    import time
+    
+    windows = gw.getAllTitles()
+    if any("Word" in title for title in windows):
+        return True
+
+    try:
+        subprocess.Popen(["start", "winword"], shell=True)
+    except Exception as e:
+        print("Gagal buka Word:", e)
+        return False
+
+    # tunggu sampai Word kebuka (max 7 detik)
+    for _ in range(10):
+        time.sleep(0.7)
+        windows = gw.getAllTitles()
+        if any("Word" in title for title in windows):
+            return True
+
+    return False
 
 def resource_path (relative_path):
     try :
@@ -29,6 +52,9 @@ def check_singleton():
 class WordFinalOverlay:
 
     def __init__(self):
+
+        ensure_word_running()
+
         self.show_startup_notification()
 
         self.char_count = 0

@@ -1,0 +1,5 @@
+
+version : 1.2.1
+updates : 
+- improving new detection Ms.Word
+- auto running Ms. Word by 7 seconds (after waits sleep intervals)
